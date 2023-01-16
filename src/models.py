@@ -11,10 +11,10 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False)
-    lastname = Column(String(250), nullable=False)
+    name = Column(String(20), nullable=False)
+    lastname = Column(String(20), nullable=False)
     password = Column(String(250), nullable=False)
-    email = Column(String(250), nullable=False)
+    email = Column(String(100), nullable=False)
 
 class Follower(Base):
     __tablename__ = 'follower'
@@ -26,14 +26,14 @@ class Follower(Base):
 class Post(Base):
     __tablename__ = 'post'
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False)
+    name = Column(String(20), nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)    
 
 class Media(Base):
     __tablename__ = 'media'
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False)
+    name = Column(String(20), nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'))
     post_id = Column(Integer, ForeignKey('post.id'))
     user = relationship(User)
@@ -42,7 +42,7 @@ class Media(Base):
 class Comment(Base):
     __tablename__ = 'comment'
     id = Column(Integer, primary_key=True)
-    description = Column(String(250), nullable=False)
+    description = Column(String(500), nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'))
     post_id = Column(Integer, ForeignKey('post.id'))
     user = relationship(User)
